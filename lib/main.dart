@@ -54,8 +54,37 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin<MyHomePage>{
   int _counter = 0;
+  late AnimationController _controller;
+late Animation<double> _fadeAnimation;
+@override
+void initState(){
+
+super.initState();
+
+_controller = AnimationController(
+  duration: Duration(seconds: 3),
+  vsync: this,);
+
+
+
+ _fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(
+  CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+);
+
+
+ _controller.forward();
+
+
+
+
+}
+ @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -112,6 +141,19 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            // AnimatedContainer(duration: const Duration(milliseconds: 5000),
+            //   width: 100,
+            //   height: 100,
+            //   child:
+            //   FadeTransition(opacity: _fadeAnimation,
+            //   child: SizedBox(
+            //     height: 200,
+            //     width: 200,
+            //     child: 
+            // //      Image.asset('assests/images/IMG_1.png)),
+                 
+
+            //   ),)
           ],
         ),
       ),
