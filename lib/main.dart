@@ -141,19 +141,19 @@ _controller = AnimationController(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            // AnimatedContainer(duration: const Duration(milliseconds: 5000),
-            //   width: 100,
-            //   height: 100,
-            //   child:
-            //   FadeTransition(opacity: _fadeAnimation,
-            //   child: SizedBox(
-            //     height: 200,
-            //     width: 200,
-            //     child: 
-            // //      Image.asset('assests/images/IMG_1.png)),
+            AnimatedContainer(duration: const Duration(milliseconds: 5000),
+              width: 100,
+              height: 100,
+              child:
+              FadeTransition(opacity: _fadeAnimation,
+              child: SizedBox(
+                height: 200,
+                width: 200,
+                child: 
+                  Image.asset('assests/images/IMG_1.png')),
                  
 
-            //   ),)
+              ),)
           ],
         ),
       ),
