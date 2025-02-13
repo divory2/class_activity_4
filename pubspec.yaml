@@ -1,4 +1,4 @@
-name: activity_4_collab
+name: cw1v2
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -51,15 +51,21 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/DC.png
+    - assets/JJK.png
+    - assets/VD5.png
 
-  # The following line ensures that the Material Icons font is
+  # The following line ensures that the Matfluerial Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - assets/VD2.png
+  # assets:
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
