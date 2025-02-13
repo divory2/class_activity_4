@@ -55,6 +55,7 @@ flutter:
     - assets/DC.png
     - assets/JJK.png
     - assets/VD5.png
+    - assets/VD3.png
 
   # The following line ensures that the Matfluerial Icons font is
   # included with your application, so that you can use the icons in

@@ -66,7 +66,7 @@ class _CounterAndImageToggleState extends State<CounterAndImageToggle> with Sing
             FadeTransition(
               opacity: _animation,
               child: Image.asset(
-                _showFirstImage ? 'assets/DC.png' : 'assets/VD5.png',
+                _showFirstImage ? 'assets/VD3.png' : 'assets/VD5.png',
                 width: 200,
                 height: 200,
               ),
