@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -98,6 +100,10 @@ void dispose(){
               onPressed: _toggleImage,
               child: Text('Toggle Image'),
             ),
+            CustomPaint(
+              painter: MyPainter(),
+              size: Size(300,300),
+            )
           ],
         ),
       ),
@@ -105,4 +111,44 @@ void dispose(){
   }
 
   
+}
+class MyPainter extends CustomPainter {
+  
+  final Random _random = Random();
+  final int confettiCount = 30;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = Colors.blue
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 5.0;
+
+  //canvas.drawArc(smile, 0, 3.14, false, mouthPaint);
+    for (int i = 0; i < confettiCount; i++) {
+      _drawConfetti(canvas, size);
+    }
+  }
+
+
+   void _drawConfetti(Canvas canvas, Size size) {
+    double x = _random.nextDouble() * size.width;
+    double y = _random.nextDouble() * size.height;
+    double confettiSize = _random.nextDouble() * 5 + 2; // Random size between 2 and 7
+
+    Paint confettiPaint = Paint()..color = _getRandomColor();
+    canvas.drawCircle(Offset(x, y), confettiSize, confettiPaint);
+  }
+
+  Color _getRandomColor() {
+    return Color.fromARGB(
+      255,
+      _random.nextInt(256),
+      _random.nextInt(256),
+      _random.nextInt(256),
+    );
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
