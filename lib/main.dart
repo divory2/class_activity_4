@@ -19,21 +19,43 @@ class CounterAndImageToggle extends StatefulWidget {
   _CounterAndImageToggleState createState() => _CounterAndImageToggleState();
 }
 
-class _CounterAndImageToggleState extends State<CounterAndImageToggle> with SingleTickerProviderStateMixin {
+class _CounterAndImageToggleState extends State<CounterAndImageToggle> with TickerProviderStateMixin {
   int _counter = 0;
   bool _showFirstImage = true;
   late AnimationController _controller;
   late Animation<double> _animation;
+  double size = 20;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: Duration(seconds: 1),
+      lowerBound: 0.5,
     );
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
+    _animation = Tween(begin: 0.8, end: 1.2).animate(
+  CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _controller.forward();
+    _controller.addStatusListener((status){
+      if (status == AnimationStatus.completed){
+        _controller.reverse();
+      } else if (status == AnimationStatus.dismissed){
+        _controller.forward();
+      }
+
+    });
+   
+
+    _controller.repeat(reverse:true);
+
+
   }
+  @override
+void dispose(){
+  _controller.dispose();
+  super.dispose();
+}
 
   void _incrementCounter() {
     setState(() {
@@ -45,7 +67,7 @@ class _CounterAndImageToggleState extends State<CounterAndImageToggle> with Sing
     setState(() {
       _showFirstImage = !_showFirstImage;
     });
-    _controller.forward(from: 0.0);
+    // _controller.forward(from: 0.0);
   }
 
   @override
@@ -63,8 +85,8 @@ class _CounterAndImageToggleState extends State<CounterAndImageToggle> with Sing
               child: Text('Increment'),
             ),
             SizedBox(height: 40),
-            FadeTransition(
-              opacity: _animation,
+            ScaleTransition(
+              scale: _animation,
               child: Image.asset(
                 _showFirstImage ? 'assets/VD3.png' : 'assets/VD5.png',
                 width: 200,
@@ -82,9 +104,5 @@ class _CounterAndImageToggleState extends State<CounterAndImageToggle> with Sing
     );
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  
 }
